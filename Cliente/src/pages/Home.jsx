@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import TaskList from "../components/TaskList";
-import TaskForm from "../components/TaskForm";
+import TaskList from "../componentes/TaskList";
+import TaskForm from "../componentes/TaskForm";
 
 const Home = () => {
-    cosnt [taskToEdit, setTaskToEdit] = useState(null);
+    const [taskToEdit, setTaskToEdit] = useState(null);
 
     const handleEdit = (task) => {
         setTaskToEdit(task);
@@ -24,8 +24,8 @@ const Home = () => {
         return(
             <div>
                 <h1>Lista de Tareas</h1>
-                <taskForm taskToEdit={taskToEdit} onSave={handleSave}></taskForm>
-                <taskList onEdit={handleEdit} onDelete={handleToDelete}></taskList>
+                <TaskForm taskToEdit={taskToEdit} onSave={handleSave}></TaskForm>
+                <TaskList onEdit={handleEdit} onDelete={handleToDelete}></TaskList>
             </div>
         )
     }
