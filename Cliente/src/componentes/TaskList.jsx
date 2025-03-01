@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
 
-const TaskList = ({onEdit, onDelete}) => {
+const TaskList = ({onEdit, onDelete, refresh}) => {
 
     const [tasks, setTasks] = useState([]);
 
@@ -15,7 +15,7 @@ const TaskList = ({onEdit, onDelete}) => {
             }
         };
         fetchTasks();
-    }, []);
+    }, [refresh]); //Forzara a que se ejecute el useEffect cada vez que se actualice la variable refresh
 
     return(
         <>

@@ -5,15 +5,18 @@ import axios from "axios";
 
 const Home = () => {
     const [taskToEdit, setTaskToEdit] = useState(null);
+    const [refresh, setRefresh] = useState(false); // Estado para forzar actualización de la lista de tareas
 
     const handleEdit = (task) => {
         setTaskToEdit(task);
+        setRefresh(prev => !prev);
     };
 
     const handleToDelete = async (taskId) =>{
         try{
             await axios.delete(`http://localhost:5001/api/tasks/${taskId}`);
             setTaskToEdit(null);//Limpiar el formulario
+            setRefresh(prev => !prev);//Actualizar la lista de tareas
         }catch(error){
             console.error('Error deleting task:', error);
         }
@@ -22,13 +25,14 @@ const Home = () => {
 
     const handleSave = () => {
         setTaskToEdit(null);//Limpiar el formulario
+        setRefresh(prev => !prev);
     };
 
     return(
         <div>
             <h1>Crear una tarea</h1>
             <TaskForm taskToEdit={taskToEdit} onSave={handleSave}></TaskForm>
-            <TaskList onEdit={handleEdit} onDelete={handleToDelete}></TaskList>
+            <TaskList onEdit={handleEdit} onDelete={handleToDelete} refresh={refresh}></TaskList>
         </div>
     )
     
