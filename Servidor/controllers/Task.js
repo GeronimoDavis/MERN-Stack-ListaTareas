@@ -13,7 +13,7 @@ const getAllTasks = async (req, res) => {
 
 const createTask = async(req, res) => {
     try{
-
+        console.log("Datos recibidos en el backend:", req.body);
         const task = new Task(req.body);
         await task.save();
         res.status(201).json(task);

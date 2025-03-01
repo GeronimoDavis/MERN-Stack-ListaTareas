@@ -16,12 +16,14 @@ const TaskForm = ({taskToEdit, onSave}) => {
         e.preventDefault();
         
         const task = {title, description};
-
+        console.log("handleSubmit ejecutado");
         try {
             if(taskToEdit){
-                await axios.put(`http://localhost:4000/api/tasks/${taskToEdit._id}`, task);
+                await axios.put(`http://localhost:5001/api/tasks/${taskToEdit._id}`, task);
+                console.log("Tarea creada con éxito");
             }else{
-                await axios.post("http://localhost:4000/api/tasks", task);
+                await axios.post("http://localhost:5001/api/tasks", task);
+                console.log("Tarea creada con éxito");
             }
             onSave();
         }catch (error) {
@@ -31,8 +33,10 @@ const TaskForm = ({taskToEdit, onSave}) => {
 
     return(
         <form onSubmit={handleSubmit}>
-            <imput type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} required/>
-            <textarea placeholder="Description" value={descriprion} onChange={(e) => setDescription(e.target.value)} required></textarea> 
+            <input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} required/>
+            <br />
+            <textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} required></textarea> 
+            <br />
             <button type="submit">{taskToEdit ? "Actualizar" : "Crear"}</button>
         </form>
     )

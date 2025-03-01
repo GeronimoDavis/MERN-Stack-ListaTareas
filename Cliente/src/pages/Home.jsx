@@ -1,6 +1,7 @@
 import React, {useState} from "react";
-import TaskList from "../componentes/TaskList";
-import TaskForm from "../componentes/TaskForm";
+import TaskList from "../componentes/TaskList.jsx";
+import TaskForm from "../componentes/TaskForm.jsx";
+import axios from "axios";
 
 const Home = () => {
     const [taskToEdit, setTaskToEdit] = useState(null);
@@ -11,24 +12,25 @@ const Home = () => {
 
     const handleToDelete = async (taskId) =>{
         try{
-            await axios.delete(`http://localhost:4000/api/tasks/${taskId}`);
+            await axios.delete(`http://localhost:5001/api/tasks/${taskId}`);
             setTaskToEdit(null);//Limpiar el formulario
         }catch(error){
             console.error('Error deleting task:', error);
         }
 
-        const handleSave = () => {
-            setTaskToEdit(null);//Limpiar el formulario
-        };
-
-        return(
-            <div>
-                <h1>Lista de Tareas</h1>
-                <TaskForm taskToEdit={taskToEdit} onSave={handleSave}></TaskForm>
-                <TaskList onEdit={handleEdit} onDelete={handleToDelete}></TaskList>
-            </div>
-        )
     }
+
+    const handleSave = () => {
+        setTaskToEdit(null);//Limpiar el formulario
+    };
+
+    return(
+        <div>
+            <h1>Crear una tarea</h1>
+            <TaskForm taskToEdit={taskToEdit} onSave={handleSave}></TaskForm>
+            <TaskList onEdit={handleEdit} onDelete={handleToDelete}></TaskList>
+        </div>
+    )
     
 }
 

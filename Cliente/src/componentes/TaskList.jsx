@@ -23,7 +23,8 @@ const TaskList = ({onEdit, onDelete}) => {
             <ul>
                 {tasks.map((task) => (
                     <li key={task._id}>
-                        <span>{task.titulo}</span>
+                        <span>{task.title}: </span>
+                        <span>{task.description}</span>
                         <button onClick={() => onEdit(task)}>Editar</button>
                         <button onClick={() => onDelete(task._id)}>Eliminar</button>
                     </li>
