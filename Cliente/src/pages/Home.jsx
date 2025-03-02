@@ -15,7 +15,7 @@ const Home = () => {
     const handleToDelete = async (taskId) =>{
         try{
             await axios.delete(`http://localhost:5001/api/tasks/${taskId}`);
-            setTaskToEdit(null);//Limpiar el formulario
+            setTaskToEdit(null);
             setRefresh(prev => !prev);//Actualizar la lista de tareas
         }catch(error){
             console.error('Error deleting task:', error);
@@ -24,7 +24,7 @@ const Home = () => {
     }
 
     const handleSave = () => {
-        setTaskToEdit(null);//Limpiar el formulario
+        setTaskToEdit(null);
         setRefresh(prev => !prev);
     };
 

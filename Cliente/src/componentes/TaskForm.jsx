@@ -9,6 +9,10 @@ const TaskForm = ({taskToEdit, onSave}) => {
         if(taskToEdit){
             setTitle(taskToEdit.title);
             setDescription(taskToEdit.description);
+        }else{
+            // Limpiar el formulario si no hay tarea para editar
+            setTitle("");
+            setDescription("");
         }
     }, [taskToEdit]);
 
@@ -25,6 +29,10 @@ const TaskForm = ({taskToEdit, onSave}) => {
                 await axios.post("http://localhost:5001/api/tasks", task);
                 console.log("Tarea creada con éxito");
             }
+             //Limpiar los inputs después de crear o actualizar
+            setTitle("");
+            setDescription("");
+
             onSave();
         }catch (error) {
             console.error('Error saving task:',error);
