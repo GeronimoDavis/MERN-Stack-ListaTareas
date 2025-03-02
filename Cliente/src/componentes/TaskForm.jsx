@@ -41,7 +41,7 @@ const TaskForm = ({taskToEdit, onSave}) => {
 
     return(
         <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} required/>
+            <input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} style={{marginBottom: "10px"}}required/>
             <br />
             <textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} required></textarea> 
             <br />

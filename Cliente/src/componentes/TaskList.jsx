@@ -25,8 +25,8 @@ const TaskList = ({onEdit, onDelete, refresh}) => {
                     <li key={task._id}>
                         <span>{task.title}: </span>
                         <span>{task.description}</span>
-                        <button onClick={() => onEdit(task)}>Editar</button>
-                        <button onClick={() => onDelete(task._id)}>Eliminar</button>
+                        <button onClick={() => onEdit(task)} style={{marginLeft: "10px"}}>Editar</button>
+                        <button onClick={() => onDelete(task._id)} style={{marginLeft: "10px"}}>Eliminar</button>
                     </li>
                 ))}
             </ul>
